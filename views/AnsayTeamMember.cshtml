@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.XxxxxTeamMember>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Xxxxx2022.ViewModels;
+
+@{
+    var t = 0;
+    var pageHeaderModel = new ComponentModel(Model, Model);
+}
+
+@Html.Partial("/Theme/Xxxxx2022/views/partials/_TeamMemberHeader.cshtml", pageHeaderModel)
+
+@Html.Partial("/Theme/Xxxxx2022/views/partials/_ContentBlocks.cshtml", Model)

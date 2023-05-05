@@ -1,0 +1,61 @@
+﻿%heading {
+    font-family: $heading-font;
+    font-size: 2.8rem;
+    font-weight: bold;
+    line-height: 1.1em;
+    margin: 0 0 .5em;
+    text-transform: uppercase;
+}
+
+.note {
+    font-size: fz(16);
+}
+
+.cta {
+	@include little-caps;
+	@include arrow;
+	border: none;
+	color: $orange;
+	display: flex;
+	width: fit-content;
+}
+
+.eyebrow {
+	color: $sky;
+	font-weight: 700;
+	margin-bottom: .25em;
+}
+
+.label {
+	@extend label;
+	margin: 0;
+}
+
+.theme-color {
+	&-white {
+		background: $white !important;
+		border: 1px solid $figure-color;
+		color: $ground-color !important;
+	}
+
+	&-dark {
+		background: $navy !important;
+		color: $white !important;
+
+		.eyebrow {
+			color: $white !important;
+		}
+	}
+
+	&-sky {
+		background: $sky !important;
+	}
+
+	&-gold {
+		background: $orange !important;
+
+		a {
+			color: $white;
+		}
+	}
+}

@@ -1,0 +1,89 @@
+// Breakpoints
+$desktop-large: "max-width: 1550px";
+$desktop-large-up: "min-width: 1550px";
+$desktop-medium: "max-width: 1300px";
+$desktop-small: "max-width: 1220px";
+$desktop-small-up: "min-width: 1221px";
+
+$tablet-small: "max-width: 800px";
+
+$mobile-large: "max-width: 700px";
+$mobile-small-up: "min-width: 501px";
+$mobile-small: "max-width: 500px";
+
+
+// Colors
+	//CSS Vars
+	:root {
+		--color-ground		: #22426f;
+		--color-ground2		: #142640;
+		--color-figure		: #fff;
+		--color-figure2		: #ebf3ff;
+		--color-link			: #ff9e18;
+	}
+
+	//Hex defaults
+	$brand-navy		: #142640;
+	$brand-blue		: #22426f;
+	$brand-blue2	: #39699e;
+	$brand-sky		: #599edf;
+	$brand-orange	: #ff9e18;
+	
+	$black			: #000;
+	$white			: #fff;
+
+	$shadow			: rgba(255,255,255,.2);
+	
+	//Tie symantic colors to brand
+	$navy			: $brand-navy;
+	$blue			: $brand-blue;
+	$blue2			: $brand-blue2;
+	$sky			: $brand-sky;
+	$pale			: #ebf3ff;
+	$orange			: $brand-orange;
+
+	//Look for colors set by theme switcher and fall back to Sass vars
+	$ground-color	: var( --color-ground, $blue );
+	$ground2-color	: var( --color-ground2, $navy );
+	
+	$figure-color	: var( --color-figure, $white );
+	$figure2-color	: var( --color-figure2, $pale );
+
+	$link-color	: var( --color-link, $orange );
+
+	//In case text color needs to change for accessibility's sake
+	$body-color: $figure-color;
+
+
+// Units
+	//layout
+	$global-padding: 4rem;
+	$vertical-padding: $global-padding * 1;
+	$border-width: 1px;
+	$em-base: 1em; // 16px
+	$base-font-size: $em-base;
+	$column-count: 12;
+	$radius: 5px;
+
+	//specific measurements
+	$site-id-height: 216px;
+	$wrapper-padding: var( --wrapper-padding );
+	$mobile-wrapper-padding: 30px;
+	$mobile-header-close-height: $vertical-padding * 2;
+
+// Helpers
+$border: $border-width solid $figure-color;
+
+
+// Fonts
+$ringside-font: "Ringside Regular A", "Ringside Regular B", sans-serif;
+$ringside-condensed-font: "Ringside Condensed A", "Ringside Condensed B", sans-serif;
+$ringside-wide-font: "Ringside Wide A", "Ringside Wide B", sans-serif;
+$ringside-x-wide-font: "Ringside Extra Wide A", "Ringside Extra Wide B", sans-serif;
+
+$heading-font: $ringside-x-wide-font;
+$subheading-font: $ringside-wide-font;
+$body-font: $ringside-font;
+$condensed-font: $ringside-condensed-font;
+$sorta-wide-font: $ringside-wide-font;
+$wide-font: $ringside-x-wide-font;

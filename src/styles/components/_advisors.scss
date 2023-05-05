@@ -1,0 +1,432 @@
+.advisors {
+	.inner {
+		display: flex;
+		flex-wrap: wrap;
+
+		@include breakpoint('max-width: 900px') {
+			display: block;
+		}
+	}
+
+	.filter-by-type {
+		border-bottom: 1px solid $sky;
+		display: flex;
+		flex-basis: 100%;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		margin-bottom: $vertical-padding*.5;
+
+		@include mobile() {
+			display: block;
+		}
+
+		.heading {
+			flex-basis: 100%;
+		}
+
+		.clear-type {
+			border: 1px solid $sky;
+			border-radius: 3px;
+			cursor: pointer;
+			display: inline-block;
+			font-family: $body-font;
+			font-size: .7rem;
+			font-weight: normal;
+			letter-spacing: 0;
+			line-height: 1em;
+			margin-left: 1rem;
+			padding: .3em .4em;
+			vertical-align: bottom;
+			white-space: nowrap;
+		}
+
+		.types {
+			display: flex;
+			justify-content: space-between;
+			margin-right: 1em;
+
+			@include mobile() {
+				display: none;
+			}
+		}
+
+		.type {
+			margin: 0 1em 1em 0;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			@include mobile() {
+				margin: 0 0 .5em;
+			}
+		}
+
+		label {
+			font-size: fz(20);
+			margin-bottom: 0;
+		}
+
+		.label {
+			display: none;
+
+			@include mobile() {
+				display: block;
+			}
+		}
+
+		.type-select {
+			display: none;
+			padding: 0;
+
+			@include mobile() {
+				display: block;
+			}
+		}
+
+		.tag {
+			cursor: pointer;
+			font-size: fz(12);
+
+			&:hover {
+				background: lighten($sky,10%);
+			}
+		}
+
+		[type="radio"], [type="checkbox"] {
+			&:checked {
+				& + .tag {
+					background: $orange;
+				}
+			}
+		}
+
+		.search {
+			align-items: stretch;
+			background: $white;
+			border-radius: $radius;
+			display: flex;
+			flex: 1;
+			margin-bottom: 1rem;
+			position: relative;
+
+			@include breakpoint('max-width: 1470px') {
+				flex-basis: 100%;
+			}
+
+			.clear {
+				color: $ground-color;
+				cursor: pointer;
+				position: absolute;
+				right: 1rem;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			.button {
+				align-items: center;
+				border-radius: $radius * .5;
+				display: none;
+				margin: 3px;
+				padding: 0 .5em;
+
+				@include mobile {
+					display: flex;
+				}
+			}
+		}
+	}
+
+	.filter-by-cat-col {
+		flex-basis: 324px;
+		margin-right: $global-padding;
+
+		@include mobile() {
+			border: 1px solid $sky;
+			border-radius: $radius;
+			margin: 0 0 1em;
+			padding: .5rem;
+			flex-basis: 100%;
+		}
+
+		.header {
+			margin-bottom: 1em;
+			padding-bottom: 1em;
+			position: relative;
+
+			&:after {
+				@include mobile() {
+					border-style: solid;
+					border-width: .5em .3em 0 .3em;
+					border-color: $sky transparent transparent transparent;
+					content: '';
+					height: 0;
+					position: absolute;
+					right: .25em;
+					top: 50%;
+					transform: translateY(-50%);
+					width: 0;
+				}
+			}
+
+			@include mobile() {
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+
+			& > .heading {
+				@include mobile() {
+					font-size: fz(20);
+					margin: 0;
+				}
+			}
+		}
+
+		.radio-button {
+			height: 1em;
+			width: 1em;
+		}
+
+		label {
+			margin-bottom: 0;
+		}
+
+		[type="radio"], [type="checkbox"] {
+			& + .radio-button + .text {
+				padding: 0 1.5rem 0 0;
+				text-align: center;
+			}
+		}
+
+		.cat-group {
+			margin-top: 2rem;
+
+			@include mobile() {
+				margin-top: 1rem;
+				display: none;
+			}
+
+			.heading {
+				font-size: fz(20);
+				margin-bottom: 1em;
+				text-transform: uppercase;
+
+				@include mobile() {
+					font-size: fz(16);
+				}
+			}
+		}
+
+		&.filter-open .cat-group {
+			@include mobile() {
+				display: block;
+			}
+		}
+
+		.clear-location {
+			@include little-caps;
+			bottom: 0;
+			color: $orange;
+			cursor: pointer;
+			left: 0;
+			position: absolute;
+
+			@include mobile() {
+				display: none;
+				position: static;
+			}
+		}
+
+		&.filter-open .clear-location {
+			@include mobile() {
+				display: block;
+			}
+		}
+
+		&.filter-open .label {
+			@include mobile() {
+				display: none;
+			}
+		}
+	}
+
+	.clear-solution {
+		@include little-caps;
+		bottom: 0;
+		color: $orange;
+		cursor: pointer;
+		left: 0;
+		position: absolute;
+	}
+
+	.region {
+		background: $blue2;
+		border-radius: $radius;
+		margin-bottom: 1em;
+		position: relative;
+
+		.field {
+			margin: 0;
+			padding: 1em;
+		}
+
+		label {
+			font-family: $body-font;
+			font-size: fz(20);
+			font-weight: normal;
+			text-transform: none;
+		}
+
+		.slide-trigger {
+			height: 1.5rem;
+			position: absolute;
+			right: 1.5rem;
+			transform: translate(50%,-50%);
+			width: 1.5rem;
+			top: 1.6rem;
+
+			&:before {
+				border-bottom: 1px solid $figure-color;
+				content: '';
+				left: 50%;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%,-50%);
+				width: 21px;
+			}
+
+			&:after {
+				border-bottom: 1px solid $figure-color;
+				content: '';
+				left: 50%;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%,-50%) rotate(90deg);
+				width: 21px;
+			}
+
+			&.open {
+				&:after {
+					display: none;
+				}
+			}
+		}
+
+		.locations {
+			border-top: 1px solid $ground-color;
+			display: none;
+			padding: 1.5em #{$global-padding*.75} .5em;
+
+			.heading {
+				font-size: fz(20);
+				margin: 0 0 1em;
+			}
+		}
+
+		.locations-list {
+			margin: 0;
+			padding: 0;
+
+			li {
+				margin: 0 0 1em;
+				padding: 0;
+			}
+		}
+	}
+
+	.advisors-col {
+		flex: 1;
+		flex-grow: 1;
+	}
+
+	.number-found {
+		flex-basis: 100%;
+		margin-bottom: 1em;
+
+		.number {
+			font-weight: bold;
+		}
+	}
+
+	.advisors-list {
+		display: flex;
+		flex-wrap: wrap;
+
+		@include mobile() {
+			display: block;
+		}
+	}
+
+	.advisor {
+		$cols-count: 3;
+		$margin-diff: (($cols-count)-1) / $cols-count;
+
+		background: $ground2-color;
+		border-radius: $radius;
+		display: flex;
+		flex-basis: calc(#{1/$cols-count*100}% - (#{$global-padding*.5} * #{$margin-diff}));
+		flex-direction: column;
+		margin: 0 $global-padding*.5 $global-padding*.5 0;
+		overflow: hidden;
+
+		&:nth-child(#{$cols-count}n) {
+			margin-right: 0;
+		}
+
+		@include mobile() {
+			margin-right: 0;
+		}
+
+		.image {
+			margin: 0;
+
+			&:before {
+				padding-bottom: 75%;
+			}
+		}
+
+		.heading a {
+			border: none;
+			color: inherit;
+		}
+
+		.tag {
+			left: 1em;
+			position: absolute;
+			top: 1em;
+		}
+
+		.content {
+			@include box;
+			border-radius: 0;
+			font-size: fz(16);
+			padding: 1em;
+		}
+
+		.content-col {
+			flex: 1;
+			order: 1;
+		}
+
+		p {
+			font-size: fz(20);
+			margin: 0 0 .3em;
+
+			a {
+				border: none;
+				color: $figure-color;
+				overflow-wrap: anywhere;
+			}
+		}
+
+		svg {
+			display: inline-block;
+			margin-right: .25em;
+			vertical-align: middle;
+		}
+	}
+}

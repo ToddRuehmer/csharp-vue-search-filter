@@ -1,0 +1,209 @@
+@function strip-unit($value) {
+	@return ($value / ($value * 0 + 1));
+}
+
+@function fz( $pixels, $base: strip-unit( $base-font-size )) {
+	@return percentage( $pixels / ( $base * 20 ) );
+}
+
+@function str-replace($string, $search, $replace: '') {
+	$index: str-index($string, $search);
+	
+	@if $index {
+	  @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+	}
+	
+	@return $string;
+  }
+  
+@mixin breakpoint($query) {
+    @media ($query) {
+        @content;
+    }
+} 
+@mixin narrow() {
+	@include breakpoint($desktop-medium) {
+		@content;
+	}
+}
+@mixin menu() {
+	@include breakpoint($desktop-small) {
+		@content;
+	}
+}
+@mixin mobile() {
+	@include breakpoint($tablet-small) {
+		@content;
+	}
+}
+  
+@mixin heading {
+    font-family: $heading-font;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+	line-height: 97%;
+}
+  
+@mixin generalPadding {
+	padding: $vertical-padding $global-padding;
+}
+  
+@mixin container {
+	padding: 0 #{$wrapper-padding};
+}
+  
+
+// COMPONENTS
+
+@function width($columns:'1') {
+	@return #{($columns/$column-count * 100) + '%'};
+}
+@mixin width($columns:'1') {
+	width: width($columns);
+}
+@mixin indent($side:'left',$columns:'1') {
+	#{'margin-' + $side}: #{($columns/$column-count * 100) + '%'};
+
+	@include breakpoint($desktop-medium) {
+		#{'margin-' + $side}: 0;
+	}
+}
+@mixin box($bg: $ground2-color) {
+	background: $bg;
+	border-radius: $radius;
+	padding: $global-padding*.5;
+		
+	@include mobile() {
+		padding: 1rem;
+	}
+}
+@mixin shadow() {
+	box-shadow: 10px 10px 0px $shadow;
+}
+@mixin little-caps() {
+	font-family: $condensed-font;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+@mixin small-text() {
+	font-size: fz(16);
+}
+@mixin content-wrapper-bump-out($side) {
+	.content-wrapper & {
+		margin-#{$side}: $global-padding * -2;
+		
+		@include narrow() {
+			margin-#{$side}: 0;
+		}
+	}
+}
+@mixin large-bg-image() {
+	[data-main] &:first-child {
+		overflow: visible;
+		position: static;
+
+		.inner {
+			position: relative;
+			z-index: 1;
+		}
+
+		.background {
+			background-size: cover;
+			height: 100vh;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+
+			&:after {
+				background: linear-gradient(180deg, rgba(34, 66, 111, 0) -13.25%, #22426F 91.36%), linear-gradient(0deg, rgba(34, 66, 111, 0.4), rgba(34, 66, 111, 0.4));
+				content: '';
+				display: block;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+
+			.theme-light & {
+				opacity: 0;
+			}
+
+			img {
+				height: 100%;
+				left: 0;
+				object-fit: cover;
+				object-position: center;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+@mixin cols($cols-count: 3, $gutter: $global-padding*.5) {
+	$max-cols: 10;
+	$margin-diff: (($cols-count)-1) / $cols-count;
+	$base-width: 1 / $cols-count * 100;
+
+	flex-basis: calc(#{$base-width + '%'} - (#{$gutter} * #{$margin-diff}));
+	flex-direction: row;
+	margin: 0 $gutter $gutter 0;
+
+	&:nth-child(#{$cols-count + 'n'}) {
+		margin-right: 0;
+	}
+}
+
+@mixin arrow($color: 'light') {
+	&:after {
+		$colorHex: '';
+
+		@if ($color == 'dark') {
+			$colorHex: str-replace('' + $navy,'#','');
+		}
+		@else {
+			$colorHex: str-replace('' + $orange,'#','');
+		}
+
+		background: url("data:image/svg+xml;utf8,<svg width='100px' height='12px' viewBox='0 0 100 12' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, 0.500000)' stroke='%23" + $colorHex + "'><line x1='0' y1='5.5' x2='98.5' y2='5.5'></line><polyline points='91.5 0 98.5 5.5 91.5 11'></polyline></g></g></svg>");
+		background-position: right center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		content: '';
+		display: inline-block;
+		height: .7em;
+		margin-left: 1em;
+		position: relative;
+		top: .3em;
+		transition: width .2s;
+		vertical-align: middle;
+		width: 3em;
+	}
+
+	&:hover:after {
+		width: 3.5em;
+	}
+}
+
+@mixin zoomHover() {
+	overflow: hidden;
+
+	img {
+		height: 120%;
+		left: -10%;
+		max-width: none;
+		top: -10%;
+		transform: scale(.9);
+		transition: all .2s;
+		width: 120%;
+	}
+
+	&:hover {
+		img {
+			transform: scale(1);
+		}
+	}
+}

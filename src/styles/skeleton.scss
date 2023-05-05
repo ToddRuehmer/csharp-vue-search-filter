@@ -1,0 +1,46 @@
+//CSS Vars
+:root {
+	--wrapper-padding	: 108px;
+	
+	@include narrow() {
+		--wrapper-padding	: 60px;
+	}
+	@include mobile() {
+		--wrapper-padding	: 30px;
+	}
+}
+
+body, html {
+	background: $ground-color;
+    color: $body-color;
+    font-family: $body-font;
+	font-size: 20px;
+	font-weight: 300;
+	min-height: 100vh;
+
+    //@include breakpoint($desktop-medium) {
+    //    font-size: 1.2vw;
+    //}
+    //@include breakpoint($tablet-small) {
+    //    font-size: 1.8vw;
+    //}
+    @include mobile {
+        font-size: 4vw;
+    }
+}
+.site-wrapper {
+	padding: 0 #{$wrapper-padding};
+}
+
+#main {
+	background: $ground-color;
+	flex: 1;
+	//position: relative;
+
+	@include menu() {
+		padding-top: $vertical-padding;
+	}
+}
+[data-transition="slide"] {
+	transform: translateX(0);
+}

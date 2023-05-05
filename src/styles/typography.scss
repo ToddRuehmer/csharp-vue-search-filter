@@ -1,0 +1,106 @@
+p, .p {
+    line-height: 1.4em;
+    margin: 0 0 1em;
+	max-width: 60rem
+}
+
+h1, .h1 {
+	@include heading;
+	color: $figure2-color;
+    font-size: fz(110);
+	line-height: 80%;
+    margin: 0 0 .3em;
+	
+    @include narrow {
+		font-size: fz(55);
+    }
+}
+h2, .h2 {
+	@include heading;
+    font-size: fz(60);
+    margin: 0 0 .35em;
+	
+	
+    @include narrow {
+		font-size: fz(50);
+    }
+    @include breakpoint($mobile-large) {
+		font-size: fz(50);
+    }
+}
+h3, .h3 {
+	@include heading;
+    font-size: fz(28);
+    margin: 0 0 .5em;
+}
+h4, .h4 {
+	@include heading;
+    font-size: fz(24);
+	line-height: 110%;
+    margin: 0 0 .5em;
+}
+h5, .h5 {
+	@include heading;
+	font-family: $body-font;
+    font-size: 1rem;
+	letter-spacing: 0;
+    margin: 0 0 .5em;
+}
+
+ul {
+	padding-left: 0;
+
+	& & {
+		padding-left: 1em;
+	}
+
+	li {
+		display: block;
+		margin-bottom: 1em;
+		padding-left: 1em;
+
+		&:before {
+			background: currentColor;
+			border-radius: 100%;
+			content: '';
+			display: inline-block;
+			height: .25rem;
+			margin: 0 .5em .25em -.75rem;
+			vertical-align: middle;
+			width: .25rem;
+		}
+	}
+}
+ol {
+	margin-top: $vertical-padding;
+	padding-left: 3em;
+
+	& & {
+		padding-left: 1em;
+	}
+	
+	li {
+		counter-increment: item;
+		display: block;
+		margin: 0 0 ($vertical-padding*.5) 0;
+		text-indent: -3em;
+
+		&:before {
+			margin-right: 1em;
+			content: counter(item);
+			color: $sky;
+			display: inline-block;
+			font-family: $subheading-font;
+			width: 2em;
+			text-align: right;
+		}
+ 	}
+}
+
+blockquote {
+    @extend .h3;
+
+	p {
+		line-height: 108%;
+	}
+}
